@@ -1,6 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
+import { NextFunction, Request, Response } from 'express';
+
+import { IMAGES_PATH } from '../constants';
 
 const filenameMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const filename: string = req.query.filename as string;
@@ -10,8 +12,6 @@ const filenameMiddleware = (req: Request, res: Response, next: NextFunction): vo
     return;
   }
 
-  const ENV_IMAGES_ROOT: string = process.env.IMAGES_ROOT as string;
-  const IMAGES_PATH: string = path.join(__dirname, '..', ENV_IMAGES_ROOT ?? './images');
   const filepath: string = path.join(IMAGES_PATH, filename);
 
   if (!fs.existsSync(filepath)) {

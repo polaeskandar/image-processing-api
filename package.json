@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "build": "tsc",
-    "start": "tsc && node ./build/server.js",
-    "dev": "nodemon ./src/server.ts",
+    "build": "tsc && node ./build/build.js",
+    "dev": "npm run build && nodemon ./src/server.ts",
+    "start": "npm run build && node ./build/server.js",
     "test": "npm run build && jasmine",
     "prettier": "prettier --write ./src/**/*.ts",
     "eslint": "eslint ./src --fix --ext .ts",
